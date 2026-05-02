@@ -1,0 +1,1325 @@
+﻿<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/png" href="../img/IMG-20260308-WA0043 (1).svg" />
+
+    <title>Our Team</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;800&family=DM+Sans:wght@300;400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      :root {
+        --primary: #8c0000;
+        --primary-dark: #7a0000;
+        --primary-light: #a61a1a;
+        --primary-ghost: rgba(140, 0, 0, 0.08);
+        --primary-ghost2: rgba(140, 0, 0, 0.14);
+        --bg: #f5f5f5;
+        --card: #ffffff;
+        --filter-bg: #eeeeee;
+        --border: #dddddd;
+        --text: #1a1a1a;
+        --text-sec: #555555;
+        --text-light: #888888;
+        --on-red: #ffffff;
+        --radius-card: 16px;
+        --shadow-soft: 0 4px 18px rgba(0, 0, 0, 0.07);
+        --shadow-hover: 0 14px 40px rgba(140, 0, 0, 0.18);
+        --transition: all 0.3s ease;
+      }
+
+      html {
+
+        scroll-behavior: smooth;
+      }
+
+      body {
+        font-family: "DM Sans", sans-serif;
+        background: var(--bg);
+        color: var(--text);
+        min-height: 100vh;
+        overflow-x: hidden;
+      }
+
+ 
+      .page {
+        max-width: 1280px;
+        margin: 40px auto;
+        padding: 72px 24px 96px;
+      }
+
+      .section-header {
+        text-align: center;
+        margin-bottom: 48px;
+        opacity: 0;
+        transform: translateY(24px);
+        animation: fadeUp 0.7s ease-out forwards;
+      }
+
+      .header-icon {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 56px;
+        height: 56px;
+        border-radius: 50%;
+        background: var(--primary-ghost);
+        margin-bottom: 18px;
+        position: relative;
+      }
+      .header-icon img {
+        width: 100%;
+        height: 100%;
+      }
+      .header-icon::after {
+        content: "";
+        position: absolute;
+        inset: -6px;
+        border-radius: 50%;
+        border: 1.5px dashed rgba(140, 0, 0, 0.22);
+        animation: spin 14s linear infinite;
+      }
+      .header-icon svg {
+        width: 26px;
+        height: 26px;
+        fill: var(--primary);
+      }
+
+      .section-title {
+        font-family: "Playfair Display", serif;
+        font-size: clamp(2rem, 4vw, 3rem);
+        font-weight: 800;
+        color: #84a07a;
+        line-height: 1.15;
+        letter-spacing: -0.5px;
+      }
+      .section-title span {
+        color: var(--primary);
+      }
+
+      .section-subtitle {
+        margin-top: 10px;
+        font-size: 1rem;
+        color: var(--text-light);
+        font-weight: 400;
+        max-width: 480px;
+        margin-left: auto;
+        margin-right: auto;
+        line-height: 1.6;
+      }
+
+    
+      .divider {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+        margin: 20px auto 0;
+        width: 120px;
+      }
+      .divider-line {
+        flex: 1;
+        height: 1.5px;
+        background: var(--primary);
+        opacity: 0.35;
+        border-radius: 2px;
+      }
+      .divider-dot {
+        width: 6px;
+        height: 6px;
+        border-radius: 50%;
+        background: var(--primary);
+      }
+
+
+      .filters {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        justify-content: center;
+        margin-bottom: 52px;
+        opacity: 0;
+        transform: translateY(16px);
+        animation: fadeUp 0.7s 0.15s ease-out forwards;
+      }
+
+      .filter-btn {
+        padding: 9px 22px;
+        border-radius: 100px;
+        border: none;
+        cursor: pointer;
+        font-family: "DM Sans", sans-serif;
+        font-size: 0.875rem;
+        font-weight: 500;
+        background: var(--filter-bg);
+        color: var(--text-sec);
+        transition: var(--transition);
+        letter-spacing: 0.2px;
+        position: relative;
+        overflow: hidden;
+      }
+      .filter-btn::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: white;
+        opacity: 0;
+        transition: opacity 0.2s;
+        border-radius: inherit;
+      }
+      .filter-btn:hover {
+        background: var(--primary-light);
+        color: var(--on-red);
+        transform: scale(1.03);
+      }
+      .filter-btn:active {
+        transform: scale(0.95);
+      }
+      .filter-btn.active {
+        background: var(--primary);
+        color: var(--on-red);
+        box-shadow: 0 4px 14px rgba(140, 0, 0, 0.3);
+      }
+
+   
+      .grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 24px;
+      }
+
+      @media (max-width: 1100px) {
+        .grid {
+          grid-template-columns: repeat(3, 1fr);
+        }
+      }
+      @media (max-width: 780px) {
+        .grid {
+          grid-template-columns: repeat(2, 1fr);
+          gap: 16px;
+        }
+      }
+      @media (max-width: 480px) {
+        .grid {
+          grid-template-columns: 1fr;
+        }
+      }
+
+
+      .card {
+        background: var(--card);
+        border: 1px solid var(--border);
+        border-radius: var(--radius-card);
+        padding: 28px 20px 22px;
+        text-align: center;
+        box-shadow: var(--shadow-soft);
+        transition:
+          transform 0.35s cubic-bezier(0.22, 0.68, 0, 1.2),
+          box-shadow 0.35s ease,
+          opacity 0.4s ease;
+        cursor: default;
+        position: relative;
+        overflow: hidden;
+
+   
+        opacity: 0;
+        transform: translateY(30px);
+      }
+
+      .card::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 3px;
+        background: linear-gradient(
+          90deg,
+          var(--primary-dark),
+          var(--primary-light)
+        );
+        transform: scaleX(0);
+        transform-origin: left;
+        transition: transform 0.4s ease;
+        border-radius: 16px 16px 0 0;
+      }
+      .card:hover::before {
+        transform: scaleX(1);
+      }
+      .card:hover {
+        transform: translateY(-8px) scale(1.02);
+        box-shadow: var(--shadow-hover);
+      }
+
+      .card.visible {
+        opacity: 1;
+        transform: translateY(0);
+      }
+*/
+      .card.hiding {
+        opacity: 0 !important;
+        transform: translateY(0) scale(0.9) !important;
+        pointer-events: none;
+        transition:
+          opacity 0.35s ease,
+          transform 0.35s ease !important;
+      }
+      .card.hidden {
+        display: none;
+      }
+      .card.showing {
+        opacity: 0;
+        transform: translateY(20px) scale(0.9);
+        transition:
+          opacity 0.45s ease,
+          transform 0.45s cubic-bezier(0.22, 0.68, 0, 1.2) !important;
+      }
+
+
+      .card-logo {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 36px;
+        height: 36px;
+        border-radius: 10px;
+        background: var(--primary-ghost);
+        margin-bottom: 14px;
+      }
+      .card-logo svg {
+        width: 18px;
+        height: 18px;
+        fill: var(--primary);
+      }
+
+
+      .avatar-wrap {
+        position: relative;
+        width: 150px;
+        height: 150px;
+        margin: 0 auto 14px;
+      }
+      .avatar-wrap img {
+        width: 100%;
+        height: 100%;
+        border-radius: 50%;
+      }
+      .avatar-wrap::before {
+        content: "";
+        position: absolute;
+        inset: -4px;
+        border-radius: 50%;
+        border: 2px solid var(--primary);
+        opacity: 0.2;
+        transition:
+          opacity 0.3s,
+          transform 0.3s;
+      }
+      .card:hover .avatar-wrap::before {
+        opacity: 0.6;
+        transform: scale(1.07);
+      }
+
+      .avatar {
+        width: 150px;
+        height: 150px;
+        border-radius: 50%;
+        object-fit: cover;
+        border: 3px solid #fff;
+        box-shadow: 0 4px 14px rgba(0, 0, 0, 0.12);
+        display: block;
+        transition: transform 0.4s ease;
+        background: var(--filter-bg);
+      }
+      .card:hover .avatar {
+        transform: scale(1.05);
+      }
+
+
+      .avatar-placeholder {
+        width: 150px;
+        height: 150px;
+        border-radius: 50%;
+        border: 3px solid #fff;
+        box-shadow: 0 4px 14px rgba(0, 0, 0, 0.12);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-family: "Playfair Display", serif;
+        font-size: 1.6rem;
+        font-weight: 700;
+        color: var(--on-red);
+        transition: transform 0.4s ease;
+        background: var(--primary);
+      }
+      .card:hover .avatar-placeholder {
+        transform: scale(1.05);
+      }
+
+
+      .badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 4px;
+        padding: 3px 10px;
+        border-radius: 100px;
+        font-size: 0.72rem;
+        font-weight: 600;
+        letter-spacing: 0.4px;
+        text-transform: uppercase;
+        margin-bottom: 6px;
+        background: linear-gradient(
+          135deg,
+          var(--primary-dark),
+          var(--primary-light)
+        );
+        color: var(--on-red);
+        box-shadow: 0 2px 8px rgba(140, 0, 0, 0.28);
+      }
+      .badge svg {
+        width: 10px;
+        height: 10px;
+        fill: var(--on-red);
+      }
+
+
+      .card-name {
+        font-family: "Playfair Display", serif;
+        font-size: 1.05rem;
+        font-weight: 700;
+        color: var(--text);
+        line-height: 1.3;
+        margin-bottom: 4px;
+      }
+      .card-role {
+        font-size: 0.825rem;
+        color: var(--text-light);
+        font-weight: 400;
+        margin-bottom: 16px;
+      }
+
+      .card-sep {
+        width: 32px;
+        height: 1.5px;
+        background: var(--border);
+        margin: 0 auto 14px;
+        border-radius: 2px;
+        transition:
+          width 0.3s,
+          background 0.3s;
+      }
+      .card:hover .card-sep {
+        width: 50px;
+        background: var(--primary);
+      }
+
+
+      .socials {
+        display: flex;
+        gap: 10px;
+        justify-content: center;
+      }
+      .social-link {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 32px;
+        height: 32px;
+        border-radius: 50%;
+        background: var(--filter-bg);
+        border: 1px solid var(--border);
+        text-decoration: none;
+        color: var(--text-sec);
+        transition: var(--transition);
+      }
+      .social-link svg {
+        width: 14px;
+        height: 14px;
+        fill: currentColor;
+        transition:
+          transform 0.25s ease,
+          fill 0.25s ease;
+      }
+      .social-link:hover {
+        background: var(--primary-ghost);
+        border-color: var(--primary);
+        color: var(--primary);
+        transform: scale(1.2);
+      }
+      .social-link:hover svg {
+        transform: scale(1.15);
+      }
+
+    
+      .empty-state {
+        grid-column: 1 / -1;
+        text-align: center;
+        padding: 64px 24px;
+        color: var(--text-light);
+        display: none;
+      }
+      .empty-state.visible {
+        display: block;
+      }
+      .empty-state svg {
+        width: 40px;
+        height: 40px;
+        fill: var(--border);
+        margin-bottom: 12px;
+      }
+      .empty-state p {
+        font-size: 0.95rem;
+      }
+
+
+      @keyframes fadeUp {
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+      @keyframes spin {
+        to {
+          transform: rotate(360deg);
+        }
+      }
+
+
+      .card.io-ready {
+        opacity: 0;
+        transform: translateY(30px);
+        transition:
+          opacity 0.55s ease,
+          transform 0.55s cubic-bezier(0.22, 0.68, 0, 1.2);
+      }
+      .card.io-visible {
+        opacity: 1;
+        transform: translateY(0);
+      }
+      .navbar{
+        direction: rtl;
+       
+      }
+    </style>
+    <link rel="stylesheet" href="../style/style.css">
+  </head>
+  <body>
+  <!--navbar-->
+
+<nav class="navbar">
+
+    <div class="nav-right">
+      <a href="../index.html">  <img src="../img/IMG-20260308-WA0043 (1).svg" alt="logo" class="logo-img"></a>
+        <a href="../index.html" class="logo-text">الصحة والسلامة</a>
+    </div>
+
+    <div class="nav-center" id="navMenu">
+        <div class="close-btn" onclick="toggleMenu()">✕</div>
+        <a href="../index.html">رئيسية</a>
+        <a href="../emergency-main/energency.html">طوارئ</a>
+        <a href="../Education/Education.html">تعلم</a>
+        <a href="../chat-ai-main/index.html">مساعد ذكي</a>
+    </div>
+    <div class="nav-left">
+        <a  href="../login-page-main/login.html" class="btn-login" >تسجيل دخول</a>
+        <a  href="../login-page-main/signup.html" class="btn-register">إنشاء حساب</a>
+        <div class="menu-icon" onclick="toggleMenu()">☰</div>
+      
+      </div>
+    </nav>
+
+
+
+    <div class="page">
+  
+      <header class="section-header" role="banner">
+        <a href="../index.html">
+          <div class="header-icon" aria-hidden="true">
+          
+            <img src="../img/IMG-20260308-WA0043 (1).svg" alt="logo" />
+          </div>
+        </a>
+        <h1 class="section-title">Our <span>Team</span></h1>
+     
+        <div class="divider" aria-hidden="true">
+          <span class="divider-line"></span>
+          <span class="divider-dot"></span>
+          <span class="divider-line"></span>
+        </div>
+      </header>
+
+      <nav class="filters" role="tablist" aria-label="Team category filters">
+        <button
+          class="filter-btn active"
+          role="tab"
+          aria-selected="true"
+          data-filter="all"
+        >
+          All
+        </button>
+        <button
+          class="filter-btn"
+          role="tab"
+          aria-selected="false"
+          data-filter="backend"
+        >
+          Back End
+        </button>
+        <button
+          class="filter-btn"
+          role="tab"
+          aria-selected="false"
+          data-filter="frontend"
+        >
+          Front End
+        </button>
+        <button
+          class="filter-btn"
+          role="tab"
+          aria-selected="false"
+          data-filter="data"
+        >
+          Data Analysis
+        </button>
+        <button
+          class="filter-btn"
+          role="tab"
+          aria-selected="false"
+          data-filter="uiux"
+        >
+          UI/UX
+        </button>
+      </nav>
+
+     
+      <main class="grid" id="teamGrid" role="main">
+        <article class="card" data-category="frontend">
+          <div class="card-logo" aria-hidden="true">
+     
+            <svg viewBox="0 0 24 24">
+              <path
+                d="M9.293 7.293 3.586 13l5.707 5.707 1.414-1.414L6.414 13l4.293-4.293-1.414-1.414Zm5.414 0-1.414 1.414L17.586 13l-4.293 4.293 1.414 1.414L20.414 13l-5.707-5.707Z"
+              />
+            </svg>
+          </div>
+          <div class="avatar-wrap">
+            <div class="avatar-placeholder">
+              <img src="img/gemy.jpg" />
+            </div>
+          </div>
+          <span class="badge">
+            <svg viewBox="0 0 24 24">
+              <path
+                d="M12 1 3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4Zm0 4 6 2.67V11c0 3.89-2.54 7.63-6 8.93-3.46-1.3-6-5.04-6-8.93V7.67L12 5Z"
+              />
+            </svg>
+            Team Leader
+          </span>
+          <p class="card-name">Gamal Mohamed</p>
+          <p class="card-role">Front End Developer</p>
+          <div class="card-sep"></div>
+          <div class="socials">
+            <a href="https://www.facebook.com/share/1DyGnK5ecb/" class="social-link" aria-label="Facebook"
+              ><svg viewBox="0 0 24 24">
+                <path
+                  d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878V14.89h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12Z"
+                /></svg
+            ></a>
+            <a href="https://www.instagram.com/_gemy____?igsh=bmtjNTV1eW8yMTY0" class="social-link" aria-label="Instagram"
+              ><svg viewBox="0 0 24 24">
+                <path
+                  d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069Zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073Zm0 5.838a6.162 6.162 0 1 0 0 12.324 6.162 6.162 0 0 0 0-12.324ZM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8Zm6.406-11.845a1.44 1.44 0 1 0 0 2.881 1.44 1.44 0 0 0 0-2.881Z"
+                /></svg
+            ></a>
+            <a href="https://twitter.com/GEMY__0" class="social-link" aria-label="X (Twitter)"
+              ><svg viewBox="0 0 24 24">
+                <path
+                  d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"
+                /></svg
+            ></a>
+            <a href="gemy1gg@gmail.com" class="social-link" aria-label="Email"
+              ><svg viewBox="0 0 24 24">
+                <path
+                  d="M20 4H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2Zm0 4-8 5-8-5V6l8 5 8-5v2Z"
+                /></svg
+            ></a>
+           
+          </div>
+        </article>
+        <article class="card" data-category="backend">
+          <div class="card-logo" aria-hidden="true">
+         
+            <svg viewBox="0 0 24 24">
+              <path
+                d="M20 3H4a1 1 0 0 0-1 1v4a1 1 0 0 0 1 1h16a1 1 0 0 0 1-1V4a1 1 0 0 0-1-1Zm-1 4H5V5h14v2Zm1 4H4a1 1 0 0 0-1 1v4a1 1 0 0 0 1 1h16a1 1 0 0 0 1-1v-4a1 1 0 0 0-1-1Zm-1 4H5v-2h14v2Zm1 4H4a1 1 0 0 0-1 1v2a1 1 0 0 0 1 1h16a1 1 0 0 0 1-1v-2a1 1 0 0 0-1-1Zm-1 2H5v-1h14v1Z"
+              />
+            </svg>
+          </div>
+          <div class="avatar-wrap">
+            <div class="avatar-placeholder"><img src="img/aya.jpg" /></div>
+          </div>
+          <p class="card-name">Aya Atef</p>
+          <p class="card-role">Back End Developer</p>
+          <div class="card-sep"></div>
+          <div class="socials">
+            <a href="https://www.facebook.com/share/1FiAzZhkVb/?mibextid=wwXIfr" class="social-link" aria-label="Facebook"
+              ><svg viewBox="0 0 24 24">
+                <path
+                  d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878V14.89h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12Z"
+                /></svg
+            ></a>
+            <a href="https://www.instagram.com/id8ay?igsh=MXdhZzBtY2Uwc3dhaQ%3D%3D&utm_source=qr" class="social-link" aria-label="Instagram"
+              ><svg viewBox="0 0 24 24">
+                <path
+                  d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069Zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073Zm0 5.838a6.162 6.162 0 1 0 0 12.324 6.162 6.162 0 0 0 0-12.324ZM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8Zm6.406-11.845a1.44 1.44 0 1 0 0 2.881 1.44 1.44 0 0 0 0-2.881Z"
+                /></svg
+            ></a>
+            <a href="#" class="social-link" aria-label="X (Twitter)"
+              ><svg viewBox="0 0 24 24">
+                <path
+                  d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"
+                /></svg
+            ></a>
+            <a href="ayaatefmohamed11@gmail.com" class="social-link" aria-label="Email"
+              ><svg viewBox="0 0 24 24">
+                <path
+                  d="M20 4H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2Zm0 4-8 5-8-5V6l8 5 8-5v2Z"
+                /></svg
+            ></a>
+          </div>
+        </article>
+        <article class="card" data-category="frontend">
+          <div class="card-logo" aria-hidden="true">
+            <svg viewBox="0 0 24 24">
+              <path
+                d="M9.293 7.293 3.586 13l5.707 5.707 1.414-1.414L6.414 13l4.293-4.293-1.414-1.414Zm5.414 0-1.414 1.414L17.586 13l-4.293 4.293 1.414 1.414L20.414 13l-5.707-5.707Z"
+              />
+            </svg>
+          </div>
+          <div class="avatar-wrap">
+            <div class="avatar-placeholder">
+              <img src="img/OIP.webp" />
+            </div>
+          </div>
+          <p class="card-name">Hasnaa Wagih</p>
+          <p class="card-role">Front End Developer</p>
+          <div class="card-sep"></div>
+          <div class="socials">
+            <a href="#" class="social-link" aria-label="Facebook"
+              ><svg viewBox="0 0 24 24">
+                <path
+                  d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878V14.89h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12Z"
+                /></svg
+            ></a>
+            <a href="#" class="social-link" aria-label="Instagram"
+              ><svg viewBox="0 0 24 24">
+                <path
+                  d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069Zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073Zm0 5.838a6.162 6.162 0 1 0 0 12.324 6.162 6.162 0 0 0 0-12.324ZM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8Zm6.406-11.845a1.44 1.44 0 1 0 0 2.881 1.44 1.44 0 0 0 0-2.881Z"
+                /></svg
+            ></a>
+            <a href="#" class="social-link" aria-label="X (Twitter)"
+              ><svg viewBox="0 0 24 24">
+                <path
+                  d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"
+                /></svg
+            ></a>
+            <a href="#" class="social-link" aria-label="Email"
+              ><svg viewBox="0 0 24 24">
+                <path
+                  d="M20 4H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2Zm0 4-8 5-8-5V6l8 5 8-5v2Z"
+                /></svg
+            ></a>
+          </div>
+        </article>
+        <article class="card" data-category="uiux">
+          <div class="card-logo" aria-hidden="true">
+           
+            <svg viewBox="0 0 24 24">
+              <path
+                d="M12 3c-4.97 0-9 4.03-9 9s4.03 9 9 9c.83 0 1.5-.67 1.5-1.5 0-.39-.15-.74-.39-1.01-.23-.26-.38-.61-.38-.99 0-.83.67-1.5 1.5-1.5H16c2.76 0 5-2.24 5-5 0-4.42-4.03-8-9-8Zm-5.5 9c-.83 0-1.5-.67-1.5-1.5S5.67 9 6.5 9 8 9.67 8 10.5 7.33 12 6.5 12Zm3-4C8.67 8 8 7.33 8 6.5S8.67 5 9.5 5s1.5.67 1.5 1.5S10.33 8 9.5 8Zm5 0c-.83 0-1.5-.67-1.5-1.5S13.67 5 14.5 5s1.5.67 1.5 1.5S15.33 8 14.5 8Zm3 4c-.83 0-1.5-.67-1.5-1.5S16.67 9 17.5 9s1.5.67 1.5 1.5-.67 1.5-1.5 1.5Z"
+              />
+            </svg>
+          </div>
+          <div class="avatar-wrap">
+            <div class="avatar-placeholder">
+             <img src="img/OIP.webp" />
+            </div>
+          </div>
+          <p class="card-name">Basmala AbdelNaser</p>
+          <p class="card-role">UI/UX</p>
+          <div class="card-sep"></div>
+          <div class="socials">
+            <a href="#" class="social-link" aria-label="Facebook"
+              ><svg viewBox="0 0 24 24">
+                <path
+                  d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878V14.89h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12Z"
+                /></svg
+            ></a>
+            <a href="#" class="social-link" aria-label="Instagram"
+              ><svg viewBox="0 0 24 24">
+                <path
+                  d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069Zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073Zm0 5.838a6.162 6.162 0 1 0 0 12.324 6.162 6.162 0 0 0 0-12.324ZM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8Zm6.406-11.845a1.44 1.44 0 1 0 0 2.881 1.44 1.44 0 0 0 0-2.881Z"
+                /></svg
+            ></a>
+                   <a href="#" class="social-link" aria-label="X (Twitter)"
+              ><svg viewBox="0 0 24 24">
+                <path
+                  d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"
+                /></svg
+            ></a>
+            <a href="#" class="social-link" aria-label="Email"
+              ><svg viewBox="0 0 24 24">
+                <path
+                  d="M20 4H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2Zm0 4-8 5-8-5V6l8 5 8-5v2Z"
+                /></svg
+            ></a>
+          </div>
+        </article>
+        <article class="card" data-category="backend">
+          <div class="card-logo" aria-hidden="true">
+            <svg viewBox="0 0 24 24">
+              <path
+                d="M20 3H4a1 1 0 0 0-1 1v4a1 1 0 0 0 1 1h16a1 1 0 0 0 1-1V4a1 1 0 0 0-1-1Zm-1 4H5V5h14v2Zm1 4H4a1 1 0 0 0-1 1v4a1 1 0 0 0 1 1h16a1 1 0 0 0 1-1v-4a1 1 0 0 0-1-1Zm-1 4H5v-2h14v2Zm1 4H4a1 1 0 0 0-1 1v2a1 1 0 0 0 1 1h16a1 1 0 0 0 1-1v-2a1 1 0 0 0-1-1Zm-1 2H5v-1h14v1Z"
+              />
+            </svg>
+          </div>
+          <div class="avatar-wrap">
+            <div class="avatar-placeholder">
+               <img src="img/OIP.webp" />
+            </div>
+          </div>
+          <p class="card-name">Mohamed Kamal</p>
+          <p class="card-role">Back End Developer</p>
+          <div class="card-sep"></div>
+          <div class="socials">
+            <a href="#" class="social-link" aria-label="Facebook"
+              ><svg viewBox="0 0 24 24">
+                <path
+                  d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878V14.89h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12Z"
+                /></svg
+            ></a>
+            <a href="#" class="social-link" aria-label="Instagram"
+              ><svg viewBox="0 0 24 24">
+                <path
+                  d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069Zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073Zm0 5.838a6.162 6.162 0 1 0 0 12.324 6.162 6.162 0 0 0 0-12.324ZM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8Zm6.406-11.845a1.44 1.44 0 1 0 0 2.881 1.44 1.44 0 0 0 0-2.881Z"
+                /></svg
+            ></a>
+                   <a href="#" class="social-link" aria-label="X (Twitter)"
+              ><svg viewBox="0 0 24 24">
+                <path
+                  d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"
+                /></svg
+            ></a>
+            <a href="#" class="social-link" aria-label="Email"
+              ><svg viewBox="0 0 24 24">
+                <path
+                  d="M20 4H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2Zm0 4-8 5-8-5V6l8 5 8-5v2Z"
+                /></svg
+            ></a>
+          </div>
+        </article>
+
+        <article class="card" data-category="backend">
+          <div class="card-logo" aria-hidden="true">
+            <svg viewBox="0 0 24 24">
+              <path
+                d="M20 3H4a1 1 0 0 0-1 1v4a1 1 0 0 0 1 1h16a1 1 0 0 0 1-1V4a1 1 0 0 0-1-1Zm-1 4H5V5h14v2Zm1 4H4a1 1 0 0 0-1 1v4a1 1 0 0 0 1 1h16a1 1 0 0 0 1-1v-4a1 1 0 0 0-1-1Zm-1 4H5v-2h14v2Zm1 4H4a1 1 0 0 0-1 1v2a1 1 0 0 0 1 1h16a1 1 0 0 0 1-1v-2a1 1 0 0 0-1-1Zm-1 2H5v-1h14v1Z"
+              />
+            </svg>
+          </div>
+          <div class="avatar-wrap">
+            <div class="avatar-placeholder">
+              <img src="img/OIP.webp" />
+            </div>
+          </div>
+          <p class="card-name">Abdelrahman Ahmed</p>
+          <p class="card-role">Back End Developer</p>
+          <div class="card-sep"></div>
+          <div class="socials">
+            <a href="#" class="social-link" aria-label="Facebook"
+              ><svg viewBox="0 0 24 24">
+                <path
+                  d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878V14.89h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12Z"
+                /></svg
+            ></a>
+            <a href="#" class="social-link" aria-label="Instagram"
+              ><svg viewBox="0 0 24 24">
+                <path
+                  d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069Zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073Zm0 5.838a6.162 6.162 0 1 0 0 12.324 6.162 6.162 0 0 0 0-12.324ZM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8Zm6.406-11.845a1.44 1.44 0 1 0 0 2.881 1.44 1.44 0 0 0 0-2.881Z"
+                /></svg
+            ></a>
+                   <a href="#" class="social-link" aria-label="X (Twitter)"
+              ><svg viewBox="0 0 24 24">
+                <path
+                  d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"
+                /></svg
+            ></a>
+            <a href="#" class="social-link" aria-label="Email"
+              ><svg viewBox="0 0 24 24">
+                <path
+                  d="M20 4H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2Zm0 4-8 5-8-5V6l8 5 8-5v2Z"
+                /></svg
+            ></a>
+          </div>
+        </article>
+
+        <article class="card" data-category="backend">
+          <div class="card-logo" aria-hidden="true">
+            <svg viewBox="0 0 24 24">
+              <path
+                d="M20 3H4a1 1 0 0 0-1 1v4a1 1 0 0 0 1 1h16a1 1 0 0 0 1-1V4a1 1 0 0 0-1-1Zm-1 4H5V5h14v2Zm1 4H4a1 1 0 0 0-1 1v4a1 1 0 0 0 1 1h16a1 1 0 0 0 1-1v-4a1 1 0 0 0-1-1Zm-1 4H5v-2h14v2Zm1 4H4a1 1 0 0 0-1 1v2a1 1 0 0 0 1 1h16a1 1 0 0 0 1-1v-2a1 1 0 0 0-1-1Zm-1 2H5v-1h14v1Z"
+              />
+            </svg>
+          </div>
+          <div class="avatar-wrap">
+            <div class="avatar-placeholder">
+             <img src="img/OIP.webp" />
+            </div>
+          </div>
+          <p class="card-name">Mohamed Ali</p>
+          <p class="card-role">Back End Developer</p>
+          <div class="card-sep"></div>
+          <div class="socials">
+            <a href="#" class="social-link" aria-label="Facebook"
+              ><svg viewBox="0 0 24 24">
+                <path
+                  d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878V14.89h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12Z"
+                /></svg
+            ></a>
+            <a href="#" class="social-link" aria-label="Instagram"
+              ><svg viewBox="0 0 24 24">
+                <path
+                  d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069Zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073Zm0 5.838a6.162 6.162 0 1 0 0 12.324 6.162 6.162 0 0 0 0-12.324ZM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8Zm6.406-11.845a1.44 1.44 0 1 0 0 2.881 1.44 1.44 0 0 0 0-2.881Z"
+                /></svg
+            ></a>
+            <a href="#" class="social-link" aria-label="X (Twitter)"
+              ><svg viewBox="0 0 24 24">
+                <path
+                  d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"
+                /></svg
+            ></a>
+            <a href="#" class="social-link" aria-label="Email"
+              ><svg viewBox="0 0 24 24">
+                <path
+                  d="M20 4H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2Zm0 4-8 5-8-5V6l8 5 8-5v2Z"
+                /></svg
+            ></a>
+          </div>
+        </article>
+
+
+        <article class="card" data-category="frontend">
+          <div class="card-logo" aria-hidden="true">
+            <svg viewBox="0 0 24 24">
+              <path
+                d="M9.293 7.293 3.586 13l5.707 5.707 1.414-1.414L6.414 13l4.293-4.293-1.414-1.414Zm5.414 0-1.414 1.414L17.586 13l-4.293 4.293 1.414 1.414L20.414 13l-5.707-5.707Z"
+              />
+            </svg>
+          </div>
+          <div class="avatar-wrap">
+            <div class="avatar-placeholder">
+             <img src="img/OIP.webp" />
+            </div>
+          </div>
+          <p class="card-name">Rawan Hosny</p>
+          <p class="card-role">Front End Developer</p>
+          <div class="card-sep"></div>
+          <div class="socials">
+            <a href="#" class="social-link" aria-label="Facebook"
+              ><svg viewBox="0 0 24 24">
+                <path
+                  d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878V14.89h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12Z"
+                /></svg
+            ></a>
+            <a href="#" class="social-link" aria-label="Instagram"
+              ><svg viewBox="0 0 24 24">
+                <path
+                  d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069Zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073Zm0 5.838a6.162 6.162 0 1 0 0 12.324 6.162 6.162 0 0 0 0-12.324ZM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8Zm6.406-11.845a1.44 1.44 0 1 0 0 2.881 1.44 1.44 0 0 0 0-2.881Z"
+                /></svg
+            ></a>
+            <a href="#" class="social-link" aria-label="X (Twitter)"
+              ><svg viewBox="0 0 24 24">
+                <path
+                  d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"
+                /></svg
+            ></a>
+            <a href="#" class="social-link" aria-label="Email"
+              ><svg viewBox="0 0 24 24">
+                <path
+                  d="M20 4H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2Zm0 4-8 5-8-5V6l8 5 8-5v2Z"
+                /></svg
+            ></a>
+          </div>
+        </article>
+
+  
+        <article class="card" data-category="data">
+          <div class="card-logo" aria-hidden="true">
+       
+            <svg viewBox="0 0 24 24">
+              <path
+                d="M9 17H7v-7h2v7Zm4 0h-2V7h2v10Zm4 0h-2v-4h2v4Zm2 2H5V5h14v14Zm0-16H5C3.9 3 3 3.9 3 5v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2Z"
+              />
+            </svg>
+          </div>
+          <div class="avatar-wrap">
+            <div class="avatar-placeholder">
+             <img src="img/dina.jpg" />
+            </div>
+          </div>
+          <p class="card-name">Dina Ayman</p>
+          <p class="card-role">Data Analysis</p>
+          <div class="card-sep"></div>
+          <div class="socials">
+            <a href="https://www.facebook.com/share/1EQh4Gh8Wq/" class="social-link" aria-label="Facebook"
+              ><svg viewBox="0 0 24 24">
+                <path
+                  d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878V14.89h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12Z"
+                /></svg
+            ></a>
+            <a href="https://www.instagram.com/dina.ayman11?igsh=c25kejZqOW1ldmo3" class="social-link" aria-label="Instagram"
+              ><svg viewBox="0 0 24 24">
+                <path
+                  d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069Zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073Zm0 5.838a6.162 6.162 0 1 0 0 12.324 6.162 6.162 0 0 0 0-12.324ZM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8Zm6.406-11.845a1.44 1.44 0 1 0 0 2.881 1.44 1.44 0 0 0 0-2.881Z"
+                /></svg
+            ></a>
+                   <a href="#" class="social-link" aria-label="X (Twitter)"
+              ><svg viewBox="0 0 24 24">
+                <path
+                  d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"
+                /></svg
+            ></a>
+            <a href="dinaayman988@gmail.com" class="social-link" aria-label="Email"
+              ><svg viewBox="0 0 24 24">
+                <path
+                  d="M20 4H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2Zm0 4-8 5-8-5V6l8 5 8-5v2Z"
+                /></svg
+            ></a>
+          </div>
+        </article>
+
+        <article class="card" data-category="data">
+          <div class="card-logo" aria-hidden="true">
+            <svg viewBox="0 0 24 24">
+              <path
+                d="M9 17H7v-7h2v7Zm4 0h-2V7h2v10Zm4 0h-2v-4h2v4Zm2 2H5V5h14v14Zm0-16H5C3.9 3 3 3.9 3 5v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2Z"
+              />
+            </svg>
+          </div>
+          <div class="avatar-wrap">
+            <div class="avatar-placeholder">
+             <img src="img/OIP.webp" />
+            </div>
+          </div>
+          <p class="card-name">Mohamed Fekry</p>
+          <p class="card-role">Data Analysis</p>
+          <div class="card-sep"></div>
+          <div class="socials">
+            <a href="#" class="social-link" aria-label="Facebook"
+              ><svg viewBox="0 0 24 24">
+                <path
+                  d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878V14.89h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12Z"
+                /></svg
+            ></a>
+            <a href="#" class="social-link" aria-label="Instagram"
+              ><svg viewBox="0 0 24 24">
+                <path
+                  d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069Zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073Zm0 5.838a6.162 6.162 0 1 0 0 12.324 6.162 6.162 0 0 0 0-12.324ZM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8Zm6.406-11.845a1.44 1.44 0 1 0 0 2.881 1.44 1.44 0 0 0 0-2.881Z"
+                /></svg
+            ></a>
+                   <a href="#" class="social-link" aria-label="X (Twitter)"
+              ><svg viewBox="0 0 24 24">
+                <path
+                  d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"
+                /></svg
+            ></a>
+            <a href="#" class="social-link" aria-label="Email"
+              ><svg viewBox="0 0 24 24">
+                <path
+                  d="M20 4H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2Zm0 4-8 5-8-5V6l8 5 8-5v2Z"
+                /></svg
+            ></a>
+          </div>
+        </article>
+
+        <article class="card" data-category="data">
+          <div class="card-logo" aria-hidden="true">
+            <svg viewBox="0 0 24 24">
+              <path
+                d="M9 17H7v-7h2v7Zm4 0h-2V7h2v10Zm4 0h-2v-4h2v4Zm2 2H5V5h14 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2Z"
+              />
+            </svg>
+          </div>
+          <div class="avatar-wrap">
+            <div class="avatar-placeholder">
+               <img src="img/OIP.webp" />
+            </div>
+          </div>
+          <p class="card-name">Ibrahim Yousef</p>
+          <p class="card-role">Data Analysis</p>
+          <div class="card-sep"></div>
+          <div class="socials">
+            <a href="#" class="social-link" aria-label="Facebook"
+              ><svg viewBox="0 0 24 24">
+                <path
+                  d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878V14.89h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12Z"
+                /></svg
+            ></a>
+            <a href="#" class="social-link" aria-label="Instagram"
+              ><svg viewBox="0 0 24 24">
+                <path
+                  d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069Zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073Zm0 5.838a6.162 6.162 0 1 0 0 12.324 6.162 6.162 0 0 0 0-12.324ZM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8Zm6.406-11.845a1.44 1.44 0 1 0 0 2.881 1.44 1.44 0 0 0 0-2.881Z"
+                /></svg
+            ></a>
+            <a href="#" class="social-link" aria-label="X (Twitter)"
+              ><svg viewBox="0 0 24 24">
+                <path
+                  d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"
+                /></svg
+            ></a>
+            <a href="#" class="social-link" aria-label="Email"
+              ><svg viewBox="0 0 24 24">
+                <path
+                  d="M20 4H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2Zm0 4-8 5-8-5V6l8 5 8-5v2Z"
+                /></svg
+            ></a>
+          </div>
+        </article>
+
+       
+
+        <article class="card" data-category="uiux">
+          <div class="card-logo" aria-hidden="true">
+            <svg viewBox="0 0 24 24">
+              <path
+                d="M12 3c-4.97 0-9 4.03-9 9s4.03 9 9 9c.83 0 1.5-.67 1.5-1.5 0-.39-.15-.74-.39-1.01-.23-.26-.38-.61-.38-.99 0-.83.67-1.5 1.5-1.5H16c2.76 0 5-2.24 5-5 0-4.42-4.03-8-9-8Zm-5.5 9c-.83 0-1.5-.67-1.5-1.5S5.67 9 6.5 9 8 9.67 8 10.5 7.33 12 6.5 12Zm3-4C8.67 8 8 7.33 8 6.5S8.67 5 9.5 5s1.5.67 1.5 1.5S10.33 8 9.5 8Zm5 0c-.83 0-1.5-.67-1.5-1.5S13.67 5 14.5 5s1.5.67 1.5 1.5S15.33 8 14.5 8Zm3 4c-.83 0-1.5-.67-1.5-1.5S16.67 9 17.5 9s1.5.67 1.5 1.5-.67 1.5-1.5 1.5Z"
+              />
+            </svg>
+          </div>
+          <div class="avatar-wrap">
+            <div class="avatar-placeholder">
+             <img src="img/hamed.jpg" />
+            </div>
+          </div>
+          <p class="card-name">Hamed Elsayd</p>
+          <p class="card-role">UI/UX</p>
+          <div class="card-sep"></div>
+          <div class="socials">
+            <a href="https://www.facebook.com/share/1YZnTefFWU/" class="social-link" aria-label="Facebook"
+              ><svg viewBox="0 0 24 24">
+                <path
+                  d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878V14.89h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12Z"
+                /></svg
+            ></a>
+            <a href="https://www.instagram.com/hamed_el._sayed?igsh=MTdkcGVseW1pcW01Ng==" class="social-link" aria-label="Instagram"
+              ><svg viewBox="0 0 24 24">
+                <path
+                  d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069Zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073Zm0 5.838a6.162 6.162 0 1 0 0 12.324 6.162 6.162 0 0 0 0-12.324ZM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8Zm6.406-11.845a1.44 1.44 0 1 0 0 2.881 1.44 1.44 0 0 0 0-2.881Z"
+                /></svg
+            ></a>
+                   <a href="#" class="social-link" aria-label="X (Twitter)"
+              ><svg viewBox="0 0 24 24">
+                <path
+                  d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"
+                /></svg
+            ></a>
+            <a href="hamedalsayed420@gmail.com" class="social-link" aria-label="Email"
+              ><svg viewBox="0 0 24 24">
+                <path
+                  d="M20 4H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2Zm0 4-8 5-8-5V6l8 5 8-5v2Z"
+                /></svg
+            ></a>
+          </div>
+        </article>
+
+        <article class="card" data-category="uiux">
+          <div class="card-logo" aria-hidden="true">
+            <svg viewBox="0 0 24 24">
+              <path
+                d="M12 3c-4.97 0-9 4.03-9 9s4.03 9 9 9c.83 0 1.5-.67 1.5-1.5 0-.39-.15-.74-.39-1.01-.23-.26-.38-.61-.38-.99 0-.83.67-1.5 1.5-1.5H16c2.76 0 5-2.24 5-5 0-4.42-4.03-8-9-8Zm-5.5 9c-.83 0-1.5-.67-1.5-1.5S5.67 9 6.5 9 8 9.67 8 10.5 7.33 12 6.5 12Zm3-4C8.67 8 8 7.33 8 6.5S8.67 5 9.5 5s1.5.67 1.5 1.5S10.33 8 9.5 8Zm5 0c-.83 0-1.5-.67-1.5-1.5S13.67 5 14.5 5s1.5.67 1.5 1.5S15.33 8 14.5 8Zm3 4c-.83 0-1.5-.67-1.5-1.5S16.67 9 17.5 9s1.5.67 1.5 1.5-.67 1.5-1.5 1.5Z"
+              />
+            </svg>
+          </div>
+          <div class="avatar-wrap">
+            <div class="avatar-placeholder">
+               <img src="img/OIP.webp" />
+            </div>
+          </div>
+          <p class="card-name">Hala Mahmoud</p>
+          <p class="card-role">UI/UX</p>
+          <div class="card-sep"></div>
+          <div class="socials">
+            <a href="#" class="social-link" aria-label="Facebook"
+              ><svg viewBox="0 0 24 24">
+                <path
+                  d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878V14.89h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12Z"
+                /></svg
+            ></a>
+            <a href="#" class="social-link" aria-label="Instagram"
+              ><svg viewBox="0 0 24 24">
+                <path
+                  d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069Zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073Zm0 5.838a6.162 6.162 0 1 0 0 12.324 6.162 6.162 0 0 0 0-12.324ZM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8Zm6.406-11.845a1.44 1.44 0 1 0 0 2.881 1.44 1.44 0 0 0 0-2.881Z"
+                /></svg
+            ></a>
+            <a href="#" class="social-link" aria-label="X (Twitter)"
+              ><svg viewBox="0 0 24 24">
+                <path
+                  d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"
+                /></svg
+            ></a>
+            <a href="#" class="social-link" aria-label="Email"
+              ><svg viewBox="0 0 24 24">
+                <path
+                  d="M20 4H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2Zm0 4-8 5-8-5V6l8 5 8-5v2Z"
+                /></svg
+            ></a>
+          </div>
+        </article>
+
+
+        <div class="empty-state" id="emptyState" aria-live="polite">
+          <svg viewBox="0 0 24 24">
+            <path
+              d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2Zm1 15h-2v-2h2v2Zm0-4h-2V7h2v6Z"
+            />
+          </svg>
+          <p>No team members found in this category.</p>
+        </div>
+      </main>
+    </div>
+
+    <script>
+      (function () {
+        "use strict";
+
+        const grid = document.getElementById("teamGrid");
+        const cards = Array.from(grid.querySelectorAll(".card[data-category]"));
+        const btns = Array.from(document.querySelectorAll(".filter-btn"));
+        const empty = document.getElementById("emptyState");
+        let current = "all";
+        let animating = false;
+
+        /* â”€â”€ PAGE-LOAD STAGGER â”€â”€ */
+        function runPageLoad() {
+          cards.forEach((card, i) => {
+            card.style.transition = `opacity 0.55s ease ${i * 0.07}s, transform 0.55s cubic-bezier(.22,.68,0,1.2) ${i * 0.07}s`;
+            requestAnimationFrame(() => {
+              requestAnimationFrame(() => {
+                card.classList.add("visible");
+              });
+            });
+          });
+        }
+
+        /* â”€â”€ INTERSECTION OBSERVER (scroll fade) â”€â”€ */
+        const io = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((e) => {
+              if (e.isIntersecting) {
+                e.target.classList.add("io-visible");
+                io.unobserve(e.target);
+              }
+            });
+          },
+          { threshold: 0.12 },
+        );
+
+        /* â”€â”€ FILTER LOGIC â”€â”€ */
+        function getVisible(filter) {
+          return cards.filter(
+            (c) => filter === "all" || c.dataset.category === filter,
+          );
+        }
+
+        function filterCards(filter) {
+          if (filter === current || animating) return;
+          animating = true;
+          const prev = getVisible(current);
+          const next = getVisible(filter);
+
+          /* STEP 1 â€” fade out current */
+          prev.forEach((card) => {
+            card.style.transition = "opacity 0.3s ease, transform 0.3s ease";
+            card.classList.add("hiding");
+          });
+
+          setTimeout(() => {
+            /* hide previous completely */
+            prev.forEach((card) => {
+              card.classList.remove("hiding", "visible");
+              card.classList.add("hidden");
+              card.style.transition = "";
+            });
+
+            /* prepare next */
+            next.forEach((card) => {
+              card.classList.remove("hidden");
+              card.classList.add("showing");
+              /* force reflow */
+              void card.offsetWidth;
+            });
+
+            /* STEP 2 â€” stagger fade-in */
+            next.forEach((card, i) => {
+              card.style.transition = `opacity 0.45s ease ${i * 0.07}s, transform 0.45s cubic-bezier(.22,.68,0,1.2) ${i * 0.07}s`;
+              requestAnimationFrame(() => {
+                card.classList.remove("showing");
+                card.classList.add("visible");
+              });
+            });
+
+            /* empty state */
+            empty.classList.toggle("visible", next.length === 0);
+
+            current = filter;
+            animating = false;
+
+            /* re-attach IO */
+            next.forEach((card) => io.observe(card));
+          }, 320);
+        }
+
+        /* â”€â”€ BUTTON CLICK â”€â”€ */
+        btns.forEach((btn) => {
+          btn.addEventListener("click", () => {
+            const f = btn.dataset.filter;
+
+            btns.forEach((b) => {
+              b.classList.remove("active");
+              b.setAttribute("aria-selected", "false");
+            });
+            btn.classList.add("active");
+            btn.setAttribute("aria-selected", "true");
+
+            filterCards(f);
+          });
+        });
+
+        /* â”€â”€ INIT â”€â”€ */
+        window.addEventListener("DOMContentLoaded", () => {
+          runPageLoad();
+          cards.forEach((card) => io.observe(card));
+        });
+
+        if (document.readyState !== "loading") {
+          runPageLoad();
+          cards.forEach((card) => io.observe(card));
+        }
+      })();
+    </script>
+    <script src="../js/main.js"></script>
+  </body>
+</html>
