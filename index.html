@@ -1,9 +1,9 @@
-﻿<!doctype html>
+<!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="icon" type="image/png" href="../img/IMG-20260308-WA0043 (1).svg" />
+    <link rel="icon" type="image/png" href="img/IMG-20260308-WA0043 (1).svg" />
 
     <title>Our Team</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -13,6 +13,7 @@
       rel="stylesheet"
     />
     <style>
+
       *,
       *::before,
       *::after {
@@ -40,6 +41,153 @@
         --shadow-hover: 0 14px 40px rgba(140, 0, 0, 0.18);
         --transition: all 0.3s ease;
       }
+/*nav*/
+.navbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 28px;
+  background: #ffffff;
+  border: 1px solid #c9c9c9;
+  border-radius: 0 0 20px 20px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 99999999;
+}
+
+.nav-right {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.logo-text {
+  font-size: 40px;
+  font-weight: 700;
+  color: #7a0000;
+  text-decoration: none;
+}
+
+.logo-img {
+  width: 40px;
+  height: 40px;
+  object-fit: contain;
+}
+
+.nav-center {
+  display: flex;
+  gap: 40px;
+}
+
+.nav-center a {
+  text-decoration: none;
+  color: #000000;
+  font-size: 20px;
+  position: relative;
+  transition: 0.4s;
+}
+
+.nav-center a:hover {
+  color: #650101b2;
+  text-decoration: underline;
+  transform: translateY(-3px);
+}
+
+.nav-left {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.btn-login {
+  background: #7a0000;
+  color: #fff;
+  border: none;
+  padding: 6px 20px;
+  border-radius: 20px;
+  font-size: 14px;
+  text-decoration: none;
+  cursor: pointer;
+  transition: 0.6s;
+}
+.btn-login:hover { background-color: #5c0000; }
+
+.btn-register {
+  background: transparent;
+  color: #7a0000;
+  border: 1.5px solid #7a0000;
+  padding: 5px 20px;
+  border-radius: 20px;
+  font-size: 14px;
+  cursor: pointer;
+  text-decoration: none;
+  transition: 0.6s;
+}
+.btn-register:hover {
+  background-color: #7a0000;
+  color: #fff;
+}
+
+.menu-icon {
+  display: none;
+  font-size: 26px;
+  color: #7a0000;
+  cursor: pointer;
+}
+
+.close-btn {
+  display: none;
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  font-size: 22px;
+  cursor: pointer;
+  color: #7a0000;
+}
+@media (max-width: 900px) {
+  .navbar {
+    flex-wrap: nowrap;
+  }
+  .nav-center {
+    position: fixed;
+    top: 0;
+    left: -260px;
+    width: 260px;
+    height: 100vh;
+    background: #fff;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 20px;
+    padding: 80px 20px;
+    border-right: 1px solid #eee;
+    transition: left 0.3s ease;
+    z-index: 999;
+    visibility: hidden;
+    pointer-events: none;
+  }
+  .nav-center.show {
+    left: 0;
+    visibility: visible;
+    pointer-events: auto;
+    background: #7a0000;
+  }
+  .nav-center.show a { width: 100%; border-bottom: 1px solid #f0f0f0; color: #ffffff; }
+  .nav-center.show a:hover { color: #ffffff; opacity: 0.8; text-decoration: none; }
+  .nav-center.show .close-btn { color: #ffffff; }
+  .menu-icon { display: block; }
+  .nav-center .close-btn {
+    display: block;
+    position: absolute;
+    top: 20px; right: 20px;
+    font-size: 22px;
+    cursor: pointer;
+    color: #ffffff;
+  }
+  .logo-text { font-size: 28px; }
+  .btn-login, .btn-register { padding: 5px 12px; font-size: 12px; }
+}
 
       html {
 
@@ -522,7 +670,7 @@
 <nav class="navbar">
 
     <div class="nav-right">
-      <a href="../index.html">  <img src="../img/IMG-20260308-WA0043 (1).svg" alt="logo" class="logo-img"></a>
+      <a href="../index.html">  <img src="img/IMG-20260308-WA0043 (1).svg" alt="logo" class="logo-img"></a>
         <a href="../index.html" class="logo-text">الصحة والسلامة</a>
     </div>
 
@@ -549,7 +697,7 @@
         <a href="../index.html">
           <div class="header-icon" aria-hidden="true">
           
-            <img src="../img/IMG-20260308-WA0043 (1).svg" alt="logo" />
+            <img src="img/IMG-20260308-WA0043 (1).svg" alt="logo" />
           </div>
         </a>
         <h1 class="section-title">Our <span>Team</span></h1>
@@ -1202,6 +1350,67 @@
     </div>
 
     <script>
+      function handleNavbarUI() {
+    const token = localStorage.getItem('token');
+    const userData = localStorage.getItem('user');
+
+    const authButtons = document.getElementById('auth-buttons');
+    const userInfo = document.getElementById('user-info');
+    const usernameDisplay = document.getElementById('username-display');
+
+    if (token && userData) {
+        const user = JSON.parse(userData);
+        if (authButtons) authButtons.style.display = 'none';
+        if (userInfo) {
+            userInfo.style.display = 'flex'; 
+            usernameDisplay.textContent = `أهلاً، ${user.first_name}`; 
+        }
+    } else {
+        if (authButtons) authButtons.style.display = 'flex';
+        if (userInfo) userInfo.style.display = 'none';
+    }
+}
+
+function logout() {
+    localStorage.removeItem('token');
+    localStorage.removeItem('user');
+    window.location.href = "/index.html"; 
+}
+
+handleNavbarUI();
+
+document.addEventListener('DOMContentLoaded', handleNavbarUI);
+   (function () {
+    function initNavbar() {
+        const menu     = document.getElementById("navMenu");
+        const overlay  = document.querySelector(".overlay");
+        const menuIcon = document.querySelector(".menu-icon");
+
+        if (!menu) return;
+
+        window.toggleMenu = function () {
+            menu.classList.toggle("show");
+            if (overlay) overlay.classList.toggle("show");
+        };
+
+        document.addEventListener("click", function (event) {
+            if (menu.classList.contains("show")) {
+                const isClickInsideMenu = menu.contains(event.target);
+                const isClickOnIcon    = menuIcon && menuIcon.contains(event.target);
+                if (!isClickInsideMenu && !isClickOnIcon) {
+                    menu.classList.remove("show");
+                    if (overlay) overlay.classList.remove("show");
+                }
+            }
+        });
+    }
+
+    if (document.readyState === "loading") {
+        document.addEventListener("DOMContentLoaded", initNavbar);
+    } else {
+        initNavbar();
+    }
+})();
       (function () {
         "use strict";
 
